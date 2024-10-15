@@ -1,11 +1,24 @@
+import {prisma} from '@/src/lib/prisma'
+import Categoryicon from '../ui/Categoryicon'
 
-export default function OrderSidebar() {
+async function getCategories(){
+  return await prisma.category.findMany()
+}
+
+
+export default async function OrderSidebar() {
+  const categories = await getCategories();
+
   return (
-    <>
-      <aside className="md:w-72 md:h-screen bg-white">
-      OrderSidebar
-      </aside>
-      
-    </>
-  )
+    <aside className="md:w-72 md:h-screen bg-white">
+      <nav className="mt-10">
+        {categories.map(category => (
+          <Categoryicon
+            key={category.id}
+            category={category}
+          />
+        ))}
+      </nav>
+    </aside>
+  );
 }

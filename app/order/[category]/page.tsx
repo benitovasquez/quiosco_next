@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 export default function OrderPage() {
   return (
     <div>
-      OrderPage
+      <h1>Order Page</h1>
     </div>
-  )
+  );
 }
